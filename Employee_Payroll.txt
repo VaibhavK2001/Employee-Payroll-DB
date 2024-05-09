@@ -46,3 +46,22 @@ mysql> DESCRIBE employee_payroll;
 | start_date | date        | NO   |     | NULL    |                |
 +------------+-------------+------+-----+---------+----------------+
 4 rows in set (0.02 sec)
+
+==============================================================================
+	UC3 - Ability to create a employee payroll DATA for Crud operation
+==============================================================================
+
+mysql> INSERT INTO employee_payroll
+    -> VALUES(2,"VEDANT",700,'2020-02-12'),(3,"TUSHAR",600,'2021-04-12');
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEE_PAYROLL;
++----+---------+--------+------------+
+| id | name    | salary | start_date |
++----+---------+--------+------------+
+|  1 | Vaibhav |    500 | 2023-01-18 |
+|  2 | VEDANT  |    700 | 2020-02-12 |
+|  3 | TUSHAR  |    600 | 2021-04-12 |
++----+---------+--------+------------+
+3 rows in set (0.00 sec)
