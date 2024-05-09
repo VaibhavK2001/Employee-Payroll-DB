@@ -28,8 +28,7 @@ mysql> CREATE TABLE employee_payroll(
     -> start_date DATE NOT NULL);
 Query OK, 0 rows affected (0.05 sec)
 
-mysql> show tables
-    -> ;
+mysql> show tables;
 +---------------------------+
 | Tables_in_payroll_service |
 +---------------------------+
