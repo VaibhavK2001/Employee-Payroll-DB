@@ -107,3 +107,48 @@ mysql> SELECT SALARY FROM EMPLOYEE_PAYROLL
 |    600 |
 +--------+
 4 rows in set (0.02 sec)
+
+==============================================================================
+	UC6 - Ability to UPDATE Table and Records
+==============================================================================
+
+mysql> ALTER TABLE EMPLOYEE_PAYROLL
+    -> ADD gender varchar(30) Null;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMPLOYEE_PAYROLL;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int         | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(50) | NO   |     | NULL    |                |
+| salary     | int         | NO   |     | NULL    |                |
+| start_date | date        | NO   |     | NULL    |                |
+| gender     | varchar(30) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.02 sec)
+
+mysql> UPDATE EMPLOYEE_PAYROLL
+    -> SET GENDER = 'M'
+    -> WHERE NAME IN ('VAIBHAV','VEDANT','TUSHAR');
+Query OK, 3 rows affected (0.02 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> UPDATE EMPLOYEE_PAYROLL
+    -> SET GENDER = 'F'
+    -> WHERE NAME IN ('SAYALI','ANJALI');
+Query OK, 2 rows affected (0.02 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEE_PAYROLL;
++----+---------+--------+------------+--------+
+| id | name    | salary | start_date | gender |
++----+---------+--------+------------+--------+
+|  1 | Vaibhav |    500 | 2023-01-18 | M      |
+|  2 | VEDANT  |    700 | 2020-02-12 | M      |
+|  3 | TUSHAR  |    600 | 2021-04-12 | M      |
+|  4 | SAYALI  |    600 | 2023-06-14 | F      |
+|  5 | ANJALI  |    600 | 2021-05-21 | F      |
++----+---------+--------+------------+--------+
+5 rows in set (0.00 sec)
