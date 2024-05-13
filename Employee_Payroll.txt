@@ -293,3 +293,96 @@ mysql> SELECT * FROM EMPLOYEE_PAYROLL
 +----+---------+--------+------------+--------+---------+-------------+------------+-----------+-----------+-------------+------------+---------+
 1 row in set (0.00 sec)
 
+====================================================================================================================================
+	UC11 - Ability to create new Table called Employee Department having Employee Id and Department ID 
+====================================================================================================================================
+
+mysql> CREATE TABLE Department_Payroll
+    -> (Did int not null,
+    -> Dname varchar(50) not null,
+    -> CONSTRAINT Did_Pk Primary Key(Did));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> show tables;
++---------------------------+
+| Tables_in_payroll_service |
++---------------------------+
+| department_payroll        |
+| employee_payroll          |
++---------------------------+
+2 rows in set (0.03 sec)
+
+
+mysql> desc department_payroll;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Did   | int         | NO   | PRI | NULL    |       |
+| Dname | varchar(50) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> INSERT INTO DEPARTMENT_PAYROLL
+    -> VALUES (101, 'DEVELOPMENT');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPARTMENT_PAYROLL
+    -> VALUES (102, 'AUTOMATION');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO DEPARTMENT_PAYROLL
+    -> VALUES (103, 'DevOps');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPARTMENT_PAYROLL
+    -> VALUES (104, 'HR');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT INTO DEPARTMENT_PAYROLL
+    -> VALUES (105, 'MANUAL');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SELECT * FROM DEPARTMENT_PAYROLL;
++-----+-------------+
+| Did | Dname       |
++-----+-------------+
+| 101 | DEVELOPMENT |
+| 102 | AUTOMATION  |
+| 103 | DevOps      |
+| 104 | HR          |
+| 105 | MANUAL      |
++-----+-------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE EMPLOYEE_DEPARTMENT
+    -> ( Eid int,
+    -> Did int,
+    -> FOREIGN KEY (Eid) REFERENCES employee_payroll(id),
+    -> FOREIGN KEY (Did) REFERENCES department_payroll(Did),
+    -> PRIMARY KEY(Eid,Did)
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> SHOW TABLES
+    -> ;
++---------------------------+
+| Tables_in_payroll_service |
++---------------------------+
+| department_payroll        |
+| employee_department       |
+| employee_payroll          |
++---------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEE_DEPARTMENT
+    -> ;
++-----+-----+
+| Eid | Did |
++-----+-----+
+|   1 | 101 |
+|   2 | 101 |
+|   3 | 102 |
+|   5 | 102 |
+|   4 | 103 |
++-----+-----+
+5 rows in set (0.00 sec)
